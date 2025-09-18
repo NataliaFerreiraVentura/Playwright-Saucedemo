@@ -1,0 +1,42 @@
+# Configuração de CI para Playwright (GitHub Actions)
+
+# Este workflow executa os testes automatizados sempre que um commit é enviado para o repositório.
+
+name: Playwright Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Instalar navegadores do Playwright
+        run: npx playwright install --with-deps
+
+      - name: Executar testes
+        run: npx playwright test
+
+      - name: Gerar relatório Allure
+        run: |
+          npx allure generate ./allure-results --clean -o ./allure-report
+          npx allure open ./allure-report
+        if: always()
+        continue-on-error: true
