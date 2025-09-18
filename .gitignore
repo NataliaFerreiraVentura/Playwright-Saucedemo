@@ -1,0 +1,8 @@
+# Arquivos e pastas a serem ignorados pelo Git
+node_modules/
+allure-results/
+allure-report/
+.DS_Store
+*.log
+coverage/
+.vscode/
