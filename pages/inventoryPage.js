@@ -1,10 +1,8 @@
-// pages/InventoryPage.js
 
-// #region Imports
 const { expect } = require('@playwright/test');
 // #endregion
 
-class InventoryPage {
+class inventoryPage {
     // #region Construtor
     /**
      * @param {import('@playwright/test').Page} page
@@ -18,6 +16,7 @@ class InventoryPage {
         this.cartLink = page.locator('a.shopping_cart_link.fa-layers.fa-fw');
     }
     // #endregion
+
 
     // #region Filtro e Ordenação
     /**
@@ -93,8 +92,21 @@ class InventoryPage {
         expect(this.page.url()).toContain('/cart.html');
     }
     // #endregion
+
+    /**
+     * Verifica título, preço e descrição dos produtos
+     * @param {Array<{name: string, price: string, description: string}>} expectedProducts
+     */
+    async verifyProductsDetails(expectedProducts) {
+        for (const expected of expectedProducts) {
+            const item = this.page.locator(`.inventory_item:has-text("${expected.name}")`);
+            await expect(item.locator('.inventory_item_name')).toHaveText(expected.name);
+            await expect(item.locator('.inventory_item_price')).toHaveText(expected.price);
+            await expect(item.locator('.inventory_item_desc')).toHaveText(expected.description);
+        }
+    }
 }
 
 // #region Exports
-module.exports = InventoryPage;
+module.exports = inventoryPage;
 // #endregion

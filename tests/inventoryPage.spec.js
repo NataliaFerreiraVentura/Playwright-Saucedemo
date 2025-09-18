@@ -2,7 +2,7 @@ const { test } = require('@playwright/test');
 // #region Imports
 require('dotenv').config();
 const LoginPage = require('../pages/loginPage');
-const InventoryPage = require('../pages/inventoryPage');
+const inventoryPage = require('../pages/inventoryPage');
 // #endregion
 
 let login;
@@ -13,12 +13,28 @@ let inventory;
  */
 test.beforeEach(async ({ page }) => {
   login = new LoginPage(page);
-  inventory = new InventoryPage(page);
+  inventory = new inventoryPage(page);
   await login.loginWithSuccess();
 });
 // #endregion
 // #endregion
 
+
+// #region Teste: Verifica nome, descrição e preço do produto
+/**
+ * Verifica nome, descrição e preço do produto Sauce Labs Backpack
+ */
+test('verifica detalhes do produto Sauce Labs Backpack', async ({ page }) => {
+  const expectedProducts = [
+    {
+      name: 'Sauce Labs Backpack',
+      price: '$29.99',
+      description: 'carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.'
+    }
+  ];
+  await inventory.verifyProductsDetails(expectedProducts);
+});
+// #endregion
 
 // #region Teste: Verifica inventário
 /**
