@@ -53,7 +53,7 @@ jobs:
           name: allure-report
           path: ./allure-report
 
-      # 8. Salvar relatório HTML do Playwright
+      # 8. Salvar relatório HTML do Playwright como artefato
       - name: Salvar relatório Playwright como artefato
         uses: actions/upload-artifact@v4
         with:
