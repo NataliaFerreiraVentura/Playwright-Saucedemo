@@ -11,11 +11,31 @@ Prova de conceito (POC) para automação do fluxo de cadastro e pesquisa de prod
 
 ## Fluxo Automatizado
 
+
 1. **Login:** Autenticação com credenciais padrão.
 2. **Navegação e Pesquisa:** Acesso à seção de produtos e pesquisa.
 3. **Validação do Produto:** Seleção de produto, validação de título, preço e descrição.
 4. **Carrinho e Checkout:** Adição ao carrinho, navegação e preenchimento dos dados de checkout.
 5. **Finalização do Pedido:** Conclusão do pedido e validação do fluxo.
+
+## Casos de Teste Automatizados
+
+
+- **loginPage.spec.js**
+   - Login com sucesso
+   - Login com erro
+- **inventoryPage.spec.js**
+   - Valida título, preço e descrição do produto (Sauce Labs Backpack)
+   - Verifica inventário, ordena por preço, adiciona item ao carrinho
+   - Verifica lista de produtos em ordem alfabética
+- **cartPage.spec.js**
+   - Adiciona um produto ao carrinho
+   - Adiciona dois produtos ao carrinho
+   - Remove um produto do carrinho
+- **finalizePurchase.spec.js**
+   - Finaliza compra com sucesso (adiciona dois produtos, preenche checkout e valida mensagem de sucesso)
+
+Para detalhes completos dos cenários e validações, consulte o arquivo [TESTING.md](./TESTING.md).
 
 ## Tecnologias Utilizadas
 
@@ -50,21 +70,37 @@ Playwright-Saucedemo/
    npx playwright test
    ```
 
-## Relatório Allure
 
-1. **Gere o relatório:**
+## Relatório HTML do Playwright
+
+1. **Gere o relatório HTML:**
    ```bash
-   npx allure generate allure-results --clean -o allure-report
+   npx playwright test --reporter=html
    ```
 2. **Visualize o relatório:**
    ```bash
-   npx allure open allure-report
+   npx playwright show-report
    ```
+   Ou abra manualmente o arquivo `playwright-report/index.html` após baixar o artefato do CI.
+
+## Relatório HTML do Playwright
+
+1. **Gere o relatório HTML:**
+   ```bash
+   npx playwright test --reporter=html
+   ```
+2. **Visualize o relatório:**
+   ```bash
+   npx playwright show-report
+   ```
+   Ou abra manualmente o arquivo `playwright-report/index.html` após baixar o artefato do CI.
 
 ## Integração Contínua (CI)
 
 - Os testes são executados automaticamente a cada commit via GitHub Actions.
-- O relatório Allure pode ser baixado nos artefatos do workflow.
+- O relatório HTML do Playwright é salvo como artefato (`playwright-report`) e pode ser aberto localmente.
+
+- O relatório HTML do Playwright também é salvo como artefato (`playwright-report`) e pode ser aberto localmente.
 
 ## Decisões e Suposições
 

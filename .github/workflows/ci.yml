@@ -31,27 +31,17 @@ jobs:
       - name: Instalar Chromium
         run: npx playwright install --with-deps chromium
 
-      # 5. Executar testes Playwright com geração de relatório HTML e Allure
+
+      # 5. Executar testes Playwright com geração de relatório HTML
       - name: Executar testes
-        run: |
-          npx playwright test --reporter=html
-          # Gera arquivos para Allure
-          mkdir -p allure-results
-          npx allure-commandline generate ./allure-results --clean -o ./allure-report || true
+        run: npx playwright test --reporter=html
 
-      # 6. Salvar resultados Allure para re-geração local
-      - name: Salvar resultados do Allure como artefato
+      # 6. Salvar relatório HTML do Playwright como artefato
+      - name: Salvar relatório Playwright como artefato
         uses: actions/upload-artifact@v4
         with:
-          name: allure-results
-          path: ./allure-results
-
-      # 7. Salvar relatório Allure gerado no CI (opcional)
-      - name: Salvar relatório Allure como artefato
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-report
-          path: ./allure-report
+          name: playwright-report
+          path: playwright-report
 
       # 8. Salvar relatório HTML do Playwright como artefato
       - name: Salvar relatório Playwright como artefato
