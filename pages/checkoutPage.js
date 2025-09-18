@@ -36,9 +36,9 @@ class CheckoutPage {
    * Preenche os campos de pagamento com dados aleatórios
    */
   async fillPaymentInformation() {
-    const randomName = generateRandomName();
-    const randomSurname = generateRandomSurname();
-    const randomZipCode = generateRandomZipCode();
+    const randomName = await generateRandomName();
+    const randomSurname = await generateRandomSurname();
+    const randomZipCode = await generateRandomZipCode();
 
     await this.firstNameInput.fill(randomName);
     await this.lastNameInput.fill(randomSurname);

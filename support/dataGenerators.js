@@ -1,14 +1,23 @@
 // support/dataGenerators.js
-const { faker } = require('@faker-js/faker');
 
-const generateRandomName = () => faker.person.fullName();
-const generateRandomFirstName = () => faker.name.firstName();
-const generateRandomSurname = () => faker.person.lastName();
-const generateRandomLastName = () => faker.name.lastName();
-const generateRandomEmail = () => faker.internet.email();
-const generateRandomZipCode = () => faker.location.zipCode().replace('-', '');
-const generateRandomPhone = () => faker.phone.phoneNumber('##########'); // 10 dígitos
-const generateRandomPassword = () => faker.internet.password(8); // senha de 8 caracteres
+let faker;
+async function getFaker() {
+  if (!faker) {
+    faker = (await import('@faker-js/faker')).faker;
+  }
+  return faker;
+}
+
+
+const generateRandomName = async () => (await getFaker()).person.fullName();
+const generateRandomFirstName = async () => (await getFaker()).name.firstName();
+const generateRandomSurname = async () => (await getFaker()).person.lastName();
+const generateRandomLastName = async () => (await getFaker()).name.lastName();
+const generateRandomEmail = async () => (await getFaker()).internet.email();
+const generateRandomZipCode = async () => (await getFaker()).location.zipCode().replace('-', '');
+const generateRandomPhone = async () => (await getFaker()).phone.phoneNumber('##########'); // 10 dígitos
+const generateRandomPassword = async () => (await getFaker()).internet.password(8); // senha de 8 caracteres
+
 
 module.exports = {
   generateRandomName,
