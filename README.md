@@ -7,7 +7,7 @@
 
 ## Objetivo
 
-Prova de conceito (POC) para automação do fluxo de cadastro e pesquisa de produtos no site público de e-commerce fictício [SauceDemo](https://www.saucedemo.com/), utilizando Playwright e arquitetura Page Object Model (POM).
+Automação do fluxo de cadastro e pesquisa de produtos no site público de e-commerce fictício. [SauceDemo](https://www.saucedemo.com/), utilizando Playwright e arquitetura Page Object Model (POM).
 
 ## Fluxo Automatizado
 
