@@ -48,6 +48,27 @@ Este projeto foi desenvolvido para um teste técnico, utilizando Playwright para
    npx allure open ./allure-report
    ```
 
+
+## Integração Contínua (CI)
+
+Este projeto utiliza GitHub Actions para executar os testes automatizados a cada commit ou pull request enviado para a branch `main`.
+
+O workflow está configurado para:
+- Instalar dependências e o navegador Chromium
+- Executar todos os testes Playwright
+- Gerar o relatório Allure
+- Salvar o relatório como artefato para download
+
+Para baixar o relatório Allure gerado no CI:
+1. Acesse a aba "Actions" do repositório no GitHub
+2. Clique no workflow executado
+3. Baixe o artefato chamado `allure-report` e visualize localmente com:
+   ```
+   npx allure-commandline open ./allure-report
+   ```
+
+---
+
 ## Observações
 - Os dados sensíveis estão centralizados no arquivo `.env`.
 - O projeto segue boas práticas de organização, padronização de nomes e comentários.
