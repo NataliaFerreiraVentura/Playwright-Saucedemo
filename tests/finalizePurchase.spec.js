@@ -8,21 +8,19 @@ const CheckoutPage = require('../pages/checkoutPage');
 const { PRODUTO1, PRODUTO2 } = require('../support/constants');
 // #endregion
 
+let login, inventory, cart, checkout;
+// #region Setup: beforeEach
+/**
+ * Inicializa os Page Objects e faz login antes de cada teste
+ */
 test.beforeEach(async ({ page }) => {
-
-  // #region Setup: beforeEach
-  /**
-   * Inicializa os Page Objects e faz login antes de cada teste
-   */
-  let login, inventory, cart, checkout;
-  test.beforeEach(async ({ page }) => {
-    login = new LoginPage(page);
-    inventory = new InventoryPage(page);
-    cart = new CartPage(page);
-    checkout = new CheckoutPage(page);
-    await login.loginWithSuccess();
-  });
-})
+  login = new LoginPage(page);
+  inventory = new InventoryPage(page);
+  cart = new CartPage(page);
+  checkout = new CheckoutPage(page);
+  await login.loginWithSuccess();
+});
+// #endregion
 // #endregion
 
 

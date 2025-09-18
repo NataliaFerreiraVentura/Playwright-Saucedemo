@@ -5,20 +5,18 @@ const LoginPage = require('../pages/loginPage');
 const InventoryPage = require('../pages/inventoryPage');
 // #endregion
 
+let login;
+let inventory;
+// #region Setup: beforeEach
+/**
+ * Inicializa os Page Objects e faz login antes de cada teste
+ */
 test.beforeEach(async ({ page }) => {
-
-  // #region Setup: beforeEach
-  /**
-   * Inicializa os Page Objects e faz login antes de cada teste
-   */
-  let login;
-  let inventory;
-  test.beforeEach(async ({ page }) => {
-    login = new LoginPage(page);
-    inventory = new InventoryPage(page);
-    await login.loginWithSuccess();
-  });
-})
+  login = new LoginPage(page);
+  inventory = new InventoryPage(page);
+  await login.loginWithSuccess();
+});
+// #endregion
 // #endregion
 
 
